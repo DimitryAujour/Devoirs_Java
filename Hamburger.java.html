@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Hamburger.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6897bb;}
+.s4 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Hamburger.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">Burgers</span><span class="s0">;</span>
+
+
+<span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.Arrays</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">Hamburger {</span>
+    <span class="s0">private </span><span class="s1">String rollType</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">String meat</span><span class="s0">;</span>
+    <span class="s0">private double </span><span class="s1">price</span><span class="s0">;</span>
+    <span class="s0">public </span><span class="s1">List&lt;String&gt; additions</span><span class="s0">;</span>
+
+    <span class="s2">//The constructor initializes the fields</span>
+    <span class="s0">public </span><span class="s1">Hamburger(String rollType</span><span class="s0">, </span><span class="s1">String meat</span><span class="s0">, double </span><span class="s1">price) {</span>
+        <span class="s0">this</span><span class="s1">.rollType = rollType</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.meat = meat</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.price = price</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.additions = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s2">// Verifies if the addition is valid and adds it to the additions list</span>
+    <span class="s0">public void </span><span class="s1">addAddition(String addition) {</span>
+        <span class="s0">if </span><span class="s1">(additions.size() &lt; </span><span class="s3">4</span><span class="s1">) {</span>
+            <span class="s1">additions.add(addition)</span><span class="s0">;</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Added &quot; </span><span class="s1">+ addition + </span><span class="s4">&quot; for an extra &quot; </span><span class="s1">+ getAdditionPrice(addition))</span><span class="s0">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Cannot add more than 4 additional items.&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public double </span><span class="s1">getAdditionPrice(String addition) {</span>
+        <span class="s2">// Switch statement to get the price of the addition</span>
+        <span class="s0">double </span><span class="s1">additionPrice = </span><span class="s3">0.0</span><span class="s0">;</span>
+        <span class="s0">switch </span><span class="s1">(addition.toLowerCase()) {</span>
+            <span class="s0">case </span><span class="s4">&quot;lettuce&quot;</span><span class="s1">:</span>
+                <span class="s1">additionPrice += </span><span class="s3">0.5</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+            <span class="s0">case </span><span class="s4">&quot;tomato&quot;</span><span class="s1">:</span>
+                <span class="s1">additionPrice += </span><span class="s3">0.5</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+            <span class="s0">case </span><span class="s4">&quot;cheese&quot;</span><span class="s1">:</span>
+                <span class="s1">additionPrice += </span><span class="s3">1</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+            <span class="s0">case </span><span class="s4">&quot;bacon&quot;</span><span class="s1">:</span>
+                <span class="s1">additionPrice += </span><span class="s3">1.5</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+            <span class="s0">default</span><span class="s1">:</span>
+                <span class="s1">System.out.println(</span><span class="s4">&quot;Invalid addition&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s0">break;</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">additionPrice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public double </span><span class="s1">calculateTotalPrice() {</span>
+        <span class="s0">double </span><span class="s1">totalPrice = price</span><span class="s0">;</span>
+        <span class="s0">for </span><span class="s1">(String addition : additions) {</span>
+            <span class="s1">totalPrice += getAdditionPrice(addition)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">totalPrice</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s2">// Displays the order</span>
+    <span class="s0">public void </span><span class="s1">displayOrder() {</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;Hamburger on a &quot; </span><span class="s1">+ rollType + </span><span class="s4">&quot; roll with &quot; </span><span class="s1">+ meat + </span><span class="s4">&quot;, price is &quot; </span><span class="s1">+ price)</span><span class="s0">;</span>
+        <span class="s0">for </span><span class="s1">(String addition : additions) {</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Added &quot; </span><span class="s1">+ addition + </span><span class="s4">&quot; for an extra &quot; </span><span class="s1">+ getAdditionPrice(addition))</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;Total Burger price is &quot; </span><span class="s1">+ calculateTotalPrice())</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
